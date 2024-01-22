@@ -2,11 +2,13 @@
 
 def safe_print_division(a, b):
     try:
-        if isinstance(a, int) and isinstance(b, int):
-            result = a // b
+        result = a // b
     except ZeroDivisionError:
         result = None
     finally:
-        print("Inside result: {}".format(result))
+        if result is None:
+            print("Inside result: None")
+        else:
+            print(f"Inside result: {result:.1f}")
 
     return result
