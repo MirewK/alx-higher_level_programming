@@ -9,7 +9,7 @@ class Square:
         Initializes a new Square instance with optional size.
 
         Args:
-            size: the size of the square(defaults to 0).
+            size (int): the size of the square(defaults to 0).
         """
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
