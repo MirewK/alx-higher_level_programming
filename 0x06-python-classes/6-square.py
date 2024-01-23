@@ -20,7 +20,7 @@ class Square:
     @property
     def size(self):
         """Retrives the current size of the square."""
-        return self.__size
+        return (self.__size)
 
     @size.setter
     def size(self, value):
@@ -34,15 +34,16 @@ class Square:
     @property
     def position(self):
         """Retrives the current position of the square."""
-        return self.__position
+        return (self.__position)
 
     @position.setter
     def position(self, value):
         """Sets the position of the square with validation."""
-        if not isinstance(value, tuple) or len(value) != 2:
+        if (not isinstance(value, tuple) or 
+                len(value) != 2 or
+                not all(isinstance(coord, int) for coord in value) or
+                not all(coord >= 0 for coord in value)):
             raise TypeError("position must be a tuple of 2 positive integers")
-        if not all(isinstance(coord, int) and coord > 0 for coord in value):
-            raise ValueError("position coordinates must be positive integers")
         self.__position = value
 
     def area(self):
@@ -53,10 +54,10 @@ class Square:
         """prints a visual representation of the square."""
         if self.__size == 0:
             print("")
-        else:
-            x_offset = " " * self.__position[0]
-            for i in range(self.__size):
-                if i >= self.__position[1]:
-                    print(x_offset + "#" * self.__size)
-                else:
-                    print(x_offset)
+            return
+
+        [print("") for i in range(0, self.__position[1])]
+        for i in range(0, self.__size):
+            [print(" ", end="") for j in range(0, self.__position[0])]
+            [print("#", end="") for k in range(0, self.__size)]
+            print("")
