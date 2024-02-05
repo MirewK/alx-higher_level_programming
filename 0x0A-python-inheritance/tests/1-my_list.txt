@@ -1,0 +1,7 @@
+This Module defines test cases for 1-my_list.py
+-----------------------------------------------
+
+>>> MyList = __import__('1-my_list').MyList
+>>>
+
+
