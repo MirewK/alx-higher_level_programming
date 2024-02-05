@@ -2,7 +2,7 @@
 """Defines a function that checks an inherited class"""
 
 
-def is_same_class(obj, a_class):
+def inherits_from(obj, a_class):
     """
     Checks if an object is an inherited instance of a class.
 
