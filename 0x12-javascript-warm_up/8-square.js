@@ -6,7 +6,7 @@ else {
 	const m = Number(process.argv[2]);
 	let i = 0;
 	while (i < m) {
-		console.log('X'.repeat(x));
+		console.log('X'.repeat(m));
 		i++;
 	}
 }
