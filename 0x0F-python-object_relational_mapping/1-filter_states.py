@@ -3,16 +3,24 @@
 import MySQLdb
 import sys
 
-if __name__ == "__main__":
-    """
-    Gets credentials from command-line arg and connect to MySQL server
-    """
-    db == MySQLdb.connect(host="localhost", user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3], port=3306)
-    c = db.cursor()
+def list_states_by_name(username, password, database):
 
-    c.execute("""SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY states.id""")
-    rows = c.fetchall()
-    for row in rows:
-        print(row)
-    c.close()
-    db.close()
+    try:
+        conn = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
+        states = cursor.fetchall()
+        for state in states:
+            print(state[0])
+
+    except Exception as err:
+        print(f"Error connecting to database: {err}")
+
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+if __name__ == "__main__":
+    list_states_by_name("my_username", "my_password", "hbtn_0e_0_usa")
